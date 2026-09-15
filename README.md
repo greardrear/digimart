@@ -23,24 +23,43 @@ PostgreSQL
 **Current Features**
 
 Create and browse listings
+
 Filter listings by title and category
+
 Location-based search using latitude, longitude and radius
+
 Default nearby search radius of 30 km
+
 Seller profiles
+
 User ratings
+
 Premium listing expiration support
+
 Planned Features
+
 User registration and login
+
 JWT authentication
+
 Private messaging
+
 Contact information for authenticated users
+
 Listing images
+
 Favorites
+
 Premium listings
+
 Payments
+
 Pagination and sorting
+
 React frontend
+
 Docker and production deployment
+
 
 **Project Structure**
 
