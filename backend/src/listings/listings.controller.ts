@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CreateListingDto } from './dto/create-listing.dto.js';
 import { ListingsService } from './listings.service.js';
+import { FilterListingsDto } from './dto/filter-listings.dto.js';
 
 @Controller('listings')
 export class ListingsController {
@@ -14,7 +15,8 @@ export class ListingsController {
     }
 
     @Get()
-    findAll() {
-        return this.listingsService.findAll();
+    findAll(@Query() filter: FilterListingsDto): any {
+        return this.listingsService.findAll(filter);
     }
 }
+ 

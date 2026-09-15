@@ -28,6 +28,15 @@ export class Listing {
   @Column({ type: 'decimal', precision: 12, scale: 3 })
   availableQuantity: string;
 
+  @Column({ type: 'varchar', length: 100 })
+  location: string;
+
+  @Column({ type: 'decimal', precision: 9, scale: 6 })
+  latitude: string;
+
+  @Column({ type: 'decimal', precision: 9, scale: 6 })
+  longitude: string;
+
   @Column({
     type: 'enum',
     enum: ListingCategory,

@@ -20,6 +20,18 @@ export class CreateListingDto {
     @IsNotEmpty()
     availableQuantity: string;
 
+    @IsString()
+    @IsNotEmpty()
+    location: string;
+
+    @IsNumberString()
+    @IsNotEmpty()
+    latitude: string;
+
+    @IsNumberString()
+    @IsNotEmpty()
+    longitude: string;
+
     @IsEnum(ListingCategory)
     @IsNotEmpty()
     category: ListingCategory;
