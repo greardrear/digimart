@@ -5,6 +5,7 @@ import { CreateListingDto } from './dto/create-listing.dto.js';
 import { Repository } from 'typeorm/browser/repository/Repository.js';
 import { User } from '../users/entities/user.entity.js';
 import { FilterListingsDto } from './dto/filter-listings.dto.js';
+import type { FilteredListings } from './listings-interface.js';
 
 @Injectable()
 export class ListingsService {
@@ -31,9 +32,12 @@ export class ListingsService {
        return this.listingsRepository.save(listing);
     }
 
-    async findAll(filter: FilterListingsDto): Promise<Listing[]> {
+    async findAll(filter: FilterListingsDto): Promise<FilteredListings> {
         const query = this.listingsRepository.createQueryBuilder('listing')
         .leftJoinAndSelect('listing.seller', 'seller');
+
+        const page = filter.page ? Number(filter.page) : 1;
+        const pageSize = filter.pageSize ? Number(filter.pageSize) : 20;
 
         if (filter.title) {
             query.andWhere('listing.title ILIKE :title', { 
@@ -61,6 +65,19 @@ export class ListingsService {
                 radius
             },);
         }
-        return query.getMany();
+       query.orderBy('listing.createdAt', 'DESC')
+       .addOrderBy('listing.id', 'DESC')
+       .skip((page - 1) * pageSize)
+       .take(pageSize); 
+
+       const [items, totalItems] = await query.getManyAndCount();
+
+       return {
+        items,
+        page,
+        pageSize,
+        totalItems,
+        totalPages: Math.ceil(totalItems / pageSize),
+       }
     }
 }
