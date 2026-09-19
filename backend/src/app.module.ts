@@ -6,6 +6,7 @@ import { AppService } from './app.service.js';
 import { UsersModule } from './users/users.module.js';
 import { ListingsModule } from './listings/listings.module.js';
 import { RatingsModule } from './ratings/ratings.module.js';
+import { AuthModule } from './auth/auth.module.js';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { RatingsModule } from './ratings/ratings.module.js';
     UsersModule,
     ListingsModule,
     RatingsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
