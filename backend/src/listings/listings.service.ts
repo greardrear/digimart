@@ -14,7 +14,7 @@ export class ListingsService {
         private readonly listingsRepository: Repository<Listing>
     ) {}
 
-    async create(createListingDto: CreateListingDto): Promise<Listing> {
+    async create(createListingDto: CreateListingDto, sellerId: number): Promise<Listing> {
        const listing = this.listingsRepository.create({
         title: createListingDto.title,
         description: createListingDto.description,
@@ -22,7 +22,7 @@ export class ListingsService {
         availableQuantity: createListingDto.availableQuantity,
         category: createListingDto.category,
         seller: {
-            id: createListingDto.sellerId,
+            id: sellerId,
         } as User,
         location: createListingDto.location,
         latitude: createListingDto.latitude,

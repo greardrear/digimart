@@ -36,8 +36,4 @@ export class CreateListingDto {
     @IsNotEmpty()
     category: ListingCategory;
 
-    @IsInt()
-    @IsPositive()
-    @IsNotEmpty()
-    sellerId: number;
 }

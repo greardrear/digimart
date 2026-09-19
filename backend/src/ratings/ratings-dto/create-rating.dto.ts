@@ -14,10 +14,5 @@ export class CreateRatingDto {
     @IsInt()
     @IsPositive()
     @IsNotEmpty()
-    reviewerId: number;
-
-    @IsInt()
-    @IsPositive()
-    @IsNotEmpty()
     reviewedUserId: number;
 }
